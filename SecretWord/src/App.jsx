@@ -9,10 +9,15 @@ import TelaInicial from './components/TelaInicial'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [jogar, setJogar] = useState(0)
+
+  const handleIniciarJogo = () => {
+    setJogar(1)
+  }
 
   return (
     <>
-      <TelaInicial></TelaInicial>
+      {!jogar && <TelaInicial jogar={handleIniciarJogo}></TelaInicial>}
     </>
   )
 }

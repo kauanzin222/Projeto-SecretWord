@@ -1,10 +1,11 @@
 import React from 'react'
+import styles from './TelaInicial.module.css'
 
 const TelaInicial = () => {
     return (
         <div className='container'>
             <h1>Secret Word</h1>
-            <p style={{color: 'green', fontWeight: 'bold'}}>Clique no botão abaixo para começar a jogar</p>
+            <p className={styles.subtitle}>Clique no botão abaixo para começar a jogar</p>
             <button>Começar jogo</button>
         </div>
     )

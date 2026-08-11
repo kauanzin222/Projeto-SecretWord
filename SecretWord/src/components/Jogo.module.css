@@ -24,3 +24,9 @@
 
     border-radius: 10px;
 }
+
+.dica {
+    color: rgb(120, 236, 252);
+    font-weight: bold;
+    font-size: 22px;
+}

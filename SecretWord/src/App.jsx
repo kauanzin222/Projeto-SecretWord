@@ -35,6 +35,7 @@ function App() {
     const resultado = sorteiaJogo()
     setCategoria(resultado.categoria)
     setPalavra(resultado.palavra)
+    setLetras(resultado.palavra.split(''))
     setEstagioJogo(estagio[1].nome)
   }
 
@@ -58,7 +59,7 @@ function App() {
     <>
       {estagioJogo == 'inicio' && <TelaInicial jogar={iniciarJogo}></TelaInicial>}
 
-      {estagioJogo == 'jogo' && <Jogo palavra={palavra} teste={teste}></Jogo>}
+      {estagioJogo == 'jogo' && <Jogo palavra={palavra} categoria={categoria} letras={letras}></Jogo>}
     </>
   )
 }

@@ -10,16 +10,27 @@ import Jogo from './components/Jogo'
 
 function App() {
   const [count, setCount] = useState(0)
-  const [jogar, setJogar] = useState(0)
+  
+  const estagio = [
+    { id: 1, nome: 'inicio' },
+    { id: 2, nome: 'jogo' },
+    { id: 3, nome: 'fim' }
+  ]
+  const [estagioJogo, setEstagioJogo] = useState(estagio[0].nome)
 
-  const handleIniciarJogo = () => {
-    setJogar(1)
+  const iniciarJogo = () => {
+    setEstagioJogo(estagio[1].nome)
+  }
+  const finalizarJogo = () => {
+    setEstagioJogo(estagio[2].nome)
   }
 
   return (
     <>
-      {!jogar && <TelaInicial jogar={handleIniciarJogo}></TelaInicial>}
-      <Jogo></Jogo>
+      {estagioJogo == 'inicio' && <TelaInicial jogar={iniciarJogo}></TelaInicial>}
+
+
+      {estagioJogo == 'jogo' && <Jogo></Jogo>}
     </>
   )
 }

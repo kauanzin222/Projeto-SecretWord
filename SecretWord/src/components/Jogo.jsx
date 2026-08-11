@@ -5,8 +5,8 @@ const Jogo = () => {
 
     return (
         <div className='container'>
-            <p>Pontuacao</p>
-            <h1>Adivinhe a Palavra:</h1>
+            <p>Pontuação: </p>
+            <h1>Adivinhe a Palavra</h1>
             <p>Dica sobre a palavra: </p>
             <p>Você ainda tem { } tentativa(s)</p>
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './Jogo.module.css'
 
-const Jogo = () => {
+const Jogo = ({ teste }) => {
 
     return (
         <div className='container'>
@@ -21,7 +21,7 @@ const Jogo = () => {
 
             <p>Tente adivinhar uma letra da palavra:</p>
 
-            <form><input type="text" className={styles.inputLetra}/> <button>JOGAR!</button></form>
+            <form><input type="text" className={styles.inputLetra} maxLength={1} /> <button onClick={teste()}>JOGAR!</button></form>
             <p>Letras já utilizada:</p>
 
         </div>

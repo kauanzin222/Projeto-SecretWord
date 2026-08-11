@@ -18,6 +18,11 @@ const estagio = [
 ]
 
 function App() {
+  const teste = () => {   
+    console.log(categoria)
+    console.log(palavra)
+  }
+
   const [palavrasJogo] = useState(listaPalavras)
 
   const [estagioJogo, setEstagioJogo] = useState(estagio[0].nome)
@@ -27,18 +32,33 @@ function App() {
   const [letras, setLetras] = useState([])
 
   const iniciarJogo = () => {
+    const resultado = sorteiaJogo()
+    setCategoria(resultado.categoria)
+    setPalavra(resultado.palavra)
     setEstagioJogo(estagio[1].nome)
   }
+
   const finalizarJogo = () => {
     setEstagioJogo(estagio[2].nome)
+  }
+
+  // SORTEIOS
+  const sorteiaJogo = () => {
+    const categoriaSorteada = sorteiaItem(Object.keys(palavrasJogo))
+    return {
+      categoria: categoriaSorteada,
+      palavra: sorteiaItem(palavrasJogo[categoriaSorteada])
+    }
+  }
+  const sorteiaItem = (itens) => {
+    return itens[Math.floor(Math.random() * itens.length)]
   }
 
   return (
     <>
       {estagioJogo == 'inicio' && <TelaInicial jogar={iniciarJogo}></TelaInicial>}
 
-
-      {estagioJogo == 'jogo' && <Jogo></Jogo>}
+      {estagioJogo == 'jogo' && <Jogo palavra={palavra} teste={teste}></Jogo>}
     </>
   )
 }

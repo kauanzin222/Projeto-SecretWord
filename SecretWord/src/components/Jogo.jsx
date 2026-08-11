@@ -21,7 +21,7 @@ const Jogo = () => {
 
             <p>Tente adivinhar uma letra da palavra:</p>
 
-            <select className={styles.selectLetra}></select> <button>JOGAR!</button>
+            <form><input type="text" className={styles.inputLetra}/> <button>JOGAR!</button></form>
             <p>Letras já utilizada:</p>
 
         </div>

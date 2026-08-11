@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Autour+One&family=Fontdiner+Swanky&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Kavoon&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 button {
   padding: 12px;
@@ -20,11 +20,11 @@ button:hover {
 
 h1 {
   font-weight: bold;
-  font-size: 64px;
+  font-size: 58px;
 }
 
 * {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Autour One", system-ui;
   font-size: 18px;
   color: white;
 }

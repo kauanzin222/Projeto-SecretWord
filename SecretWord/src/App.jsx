@@ -29,13 +29,12 @@ function App() {
 
   const [palavra, setPalavra] = useState('')
   const [categoria, setCategoria] = useState('')
-  const [letras, setLetras] = useState([])
+  const [letrasUsadas, setLetras] = useState([])
 
   const iniciarJogo = () => {
     const resultado = sorteiaJogo()
     setCategoria(resultado.categoria)
     setPalavra(resultado.palavra)
-    setLetras(resultado.palavra.split(''))
     setEstagioJogo(estagio[1].nome)
   }
 

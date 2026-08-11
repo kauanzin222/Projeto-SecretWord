@@ -11,7 +11,7 @@ const Jogo = ({ palavra, categoria, letras }) => {
             <p>Você ainda tem { } tentativa(s)</p>
 
             <div className={styles.containerPalavra}>
-                {letras.map((letra) =>
+                {palavra.split('').map((letra) =>
                     <div className={styles.quadPalavra} value={letra}></div>)}
             </div>
 

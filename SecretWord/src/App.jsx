@@ -6,6 +6,7 @@ import './App.css'
 
 // components
 import TelaInicial from './components/TelaInicial'
+import Jogo from './components/Jogo'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -18,6 +19,7 @@ function App() {
   return (
     <>
       {!jogar && <TelaInicial jogar={handleIniciarJogo}></TelaInicial>}
+      <Jogo></Jogo>
     </>
   )
 }

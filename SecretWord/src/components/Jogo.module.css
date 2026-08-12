@@ -1,39 +1,162 @@
-.quadPalavra {
-    background-color: white;
-    color: black;
-    font-size: 50px;
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Jogo.module.css */
 
-    width: 100px;
-    height: 100px;
-    border: 2px solid black;
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+
+  background-color: var(--card-bg);
+  border: 3.5px solid var(--border-color);
+  border-radius: 20px;
+  box-shadow: var(--shadow-card);
+
+  padding: 40px 32px;
+  max-width: 650px;
+  width: 100%;
+  text-align: center;
+
+  /* Mantém o mesmo efeito de entrada da Tela Inicial */
+  animation: popFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.containerPalavra {
-    display: inline-flex;
+.pontuacaoBadge {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-transform: uppercase;
 
-    padding: 20px;
-    margin: 16px;
-
-    border: 30px solid rgb(253, 236, 0);
-    border-radius: 10px;
+  background-color: var(--badge-bg);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  padding: 6px 16px;
+  box-shadow: 3px 3px 0px var(--border-color);
 }
 
-.inputLetra {
-    height: 50px;
-    width: 50px;
-
-    color: black;
-    text-align: center;
-
-    border-radius: 10px;
+.title {
+  font-family: var(--font-title);
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  text-transform: uppercase;
+  color: var(--text-main);
+  line-height: 1.1;
 }
 
 .dica {
-    color: rgb(120, 236, 252);
-    font-weight: bold;
-    font-size: 22px;
+  font-family: var(--font-body);
+  font-weight: 800;
+  color: var(--accent-btn);
+  text-decoration: underline;
+}
+
+.tentativas {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+/* Container flexível para as cartas da palavra */
+.containerPalavra {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin: 16px 0;
+  padding: 8px;
+}
+
+/* Cada letra individual estilizada como uma peça de tabuleiro */
+.quadPalavra {
+  width: 60px;
+  height: 60px;
+  
+  background-color: #ffffff;
+  border: 3.5px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 4px 4px 0px var(--border-color);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: var(--font-title);
+  font-size: 2rem;
+  color: var(--text-main);
+  text-transform: uppercase;
+}
+
+/* Formulário de jogada */
+.formContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 8px 0;
+}
+
+.inputLetra {
+  width: 60px;
+  height: 56px;
+
+  border: 3px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 3px 3px 0px var(--border-color);
+
+  font-family: var(--font-title);
+  font-size: 1.8rem;
+  text-align: center;
+  color: var(--text-main);
+  background-color: #ffffff;
+
+  outline: none;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.inputLetra:focus {
+  border-color: var(--accent-btn);
+  box-shadow: 4px 4px 0px var(--accent-btn);
+}
+
+.btnJogar {
+  font-family: var(--font-title);
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  height: 56px;
+
+  padding: 0 28px;
+
+  background-color: var(--accent-btn);
+  color: var(--text-btn);
+
+  border: 3px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: var(--shadow-btn);
+
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.2s ease;
+}
+
+.btnJogar:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-btn-hover);
+  background-color: var(--accent-btn-hover);
+}
+
+.btnJogar:active {
+  transform: translate(3px, 3px);
+  box-shadow: var(--shadow-btn-active);
+}
+
+/* Bloco de letras erradas */
+.letrasUsadasContainer {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.letrasUsadas {
+  font-family: var(--font-title);
+  color: #ef4444; /* Vermelho para destaque das erradas */
+  letter-spacing: 2px;
 }

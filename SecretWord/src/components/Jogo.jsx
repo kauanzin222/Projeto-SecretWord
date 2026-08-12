@@ -22,22 +22,26 @@ const Jogo = ({
     }
 
     return (
-        <div className='container'>
-            <p>Pontuação: {pontuacao}</p>
-            <h1>Adivinhe a Palavra</h1>
+        <div className={styles.container}>
+            <div className={styles.pontuacaoBadge}>
+                Pontuação: {pontuacao}
+            </div>
+
+            <h1 className={styles.title}>Adivinhe a Palavra</h1>
+
             <p>Dica sobre a palavra: <span className={styles.dica}>{categoria}</span></p>
-            <p>Você ainda tem {tentativas} tentativa(s)</p>
+            <p className={styles.tentativas}>Você ainda tem {tentativas} tentativa(s)</p>
 
             <div className={styles.containerPalavra}>
                 {letras.map((letra, i) =>
-                    <div className={styles.quadPalavra} value={letra} key={i}>
+                    <div className={styles.quadPalavra} key={i}>
                         {letrasChute.includes(letra) ? letra : ''}
                     </div>)}
             </div>
 
             <p>Tente adivinhar uma letra da palavra:</p>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className={styles.formContainer}>
                 <input
                     type="text"
                     className={styles.inputLetra}
@@ -47,10 +51,13 @@ const Jogo = ({
                     ref={inputLetra}
                     onChange={(e) => { setLetraEscolhida(e.target.value.toUpperCase()) }} />
 
-                <button type='submit'>JOGAR!</button>
+                <button type='submit' className={styles.btnJogar}>JOGAR!</button>
             </form>
-            <p>Letras já utilizadas:</p>
-            {letrasErradas.join(', ')}
+
+            <div className={styles.letrasUsadasContainer}>
+                <p>Letras já utilizadas:</p>
+                <span className={styles.letrasUsadas}>{letrasErradas.join(', ')}</span>
+            </div>
         </div>
     )
 }

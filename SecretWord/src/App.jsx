@@ -64,6 +64,13 @@ function App() {
     if (!palavra.split('').map(letra => letra.toUpperCase()).includes(letra)
       && !letrasUsadas.includes(letra))
       setTentativas(tentativasPrev => tentativasPrev - 1)
+
+    console.log(testaAcertoPalavra())
+    console.log(palavra)
+    console.log(letrasUsadas)
+  }
+  const testaAcertoPalavra = () => {
+    return palavra.split('').every(letra => letrasUsadas.includes(letra.toUpperCase()))
   }
 
   return (
@@ -79,6 +86,8 @@ function App() {
           jogarLetra={jogarLetra}
           letrasUsadas={letrasUsadas}
         ></Jogo>}
+
+
     </>
   )
 }

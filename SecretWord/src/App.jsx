@@ -96,7 +96,8 @@ function App() {
       limparStatesLetras()
 
       finalizarJogo()
-    }
+    } 
+    
   }, [tentativas])
 
   // Checa se o usuário acertou todas as letras

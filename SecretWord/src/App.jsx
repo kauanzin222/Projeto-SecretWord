@@ -117,7 +117,10 @@ function App() {
 
   return (
     <>
-      {estagioJogo == 'inicio' && <TelaInicial jogar={iniciarJogo}></TelaInicial>}
+      {estagioJogo == 'inicio' &&
+        <TelaInicial
+          jogar={iniciarJogo}>
+        </TelaInicial>}
 
       {estagioJogo == 'jogo' &&
         <Jogo
@@ -130,7 +133,11 @@ function App() {
           letrasErradas={letrasErradas}
         ></Jogo>}
 
-      {estagioJogo == 'fim' && <FimDeJogo tentarNovamente={tentarNovamente} pontuacao={pontuacao}></FimDeJogo>}
+      {estagioJogo == 'fim' &&
+        <FimDeJogo
+          tentarNovamente={tentarNovamente}
+          pontuacao={pontuacao}>
+        </FimDeJogo>}
     </>
   )
 }

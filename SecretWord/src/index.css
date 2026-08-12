@@ -1,48 +1,52 @@
-@import url('https://fonts.googleapis.com/css2?family=Autour+One&family=Fontdiner+Swanky&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Kavoon&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+/* index.css */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Righteous&family=Space+Grotesk:wght@700&display=swap');
 
-button {
-  padding: 12px;
-  margin: 20px;
+:root {
+  /* Tipografia Pop */
+  --font-title: 'Righteous', cursive;
+  --font-body: 'Space Grotesk', sans-serif;
 
-  border-radius: 10px;
-  border: 0;
+  /* Opção B: Pastel Neon / Modern Comic */
+  --bg-color: #e0e7ff;         /* Índigo suave/lilás de fundo */
+  --card-bg: #ffffff;         /* Card branco sólido */
+  --border-color: #0f172a;    /* Bordas pretas/grafite marcantes */
+  --text-main: #0f172a;       /* Texto principal */
+  
+  --accent-btn: #4f46e5;      /* Botão em Azul Índigo vibrante */
+  --accent-btn-hover: #4338ca;
+  --text-btn: #ffffff;
+  
+  --badge-bg: #fef08a;        /* Badge em amarelo pastel */
 
-  background-color: #f8f9fa;
-  color: #243b55;
-  font-weight: bold;
-
-  transition: 0.5s;
+  /* Sombras Rígidas Pop (2D sem blur) */
+  --shadow-card: 8px 8px 0px var(--border-color);
+  --shadow-btn: 5px 5px 0px var(--border-color);
+  --shadow-btn-hover: 7px 7px 0px var(--border-color);
+  --shadow-btn-active: 2px 2px 0px var(--border-color);
 }
 
-button:hover {
-  background-color: #586869;
-  color: #f8f9fa;
-  cursor: pointer;
-}
-
-h1 {
-  font-weight: bold;
-  font-size: 58px;
-}
-
-* {
-  font-family: "Autour One", system-ui;
-  font-size: 18px;
-  color: white;
+/* Reset Universal e Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background-image: linear-gradient(to right, #243b55, #141e30);
-
+  font-family: var(--font-body);
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  min-height: 100vh;
-  margin-bottom: 30px;
+  overflow-x: hidden;
 }
 
-.container {
-  text-align: center;
-  margin: 20px;
+#root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }

@@ -1,4 +1,91 @@
+/* TelaInicial.module.css */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+
+  background-color: var(--card-bg);
+  border: 3.5px solid var(--border-color);
+  border-radius: 20px;
+  box-shadow: var(--shadow-card);
+
+  padding: 56px 40px;
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+
+  /* Aplicação da Animação Fade In com Efeito Pop */
+  animation: popFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.title {
+  font-family: var(--font-title);
+  font-size: clamp(2.6rem, 6vw, 3.8rem);
+  letter-spacing: 1px;
+  color: var(--text-main);
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.subtitleBadge {
+  background-color: var(--badge-bg);
+  border: 2.5px solid var(--border-color);
+  border-radius: 12px;
+  padding: 10px 20px;
+  box-shadow: 3px 3px 0px var(--border-color);
+  transform: rotate(-1.5deg); /* Inclinação leve para o estilo HQ */
+}
+
 .subtitle {
-    color: green;
-    font-weight: bold;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.btnStart {
+  font-family: var(--font-title);
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  padding: 16px 40px;
+  margin-top: 8px;
+
+  background-color: var(--accent-btn);
+  color: var(--text-btn);
+
+  border: 3px solid var(--border-color);
+  border-radius: 14px;
+  box-shadow: var(--shadow-btn);
+
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.2s ease;
+}
+
+/* Interação do Botão */
+.btnStart:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-btn-hover);
+  background-color: var(--accent-btn-hover);
+}
+
+.btnStart:active {
+  transform: translate(3px, 3px);
+  box-shadow: var(--shadow-btn-active);
+}
+
+/* Keyframes da Animação Fade In */
+@keyframes popFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }

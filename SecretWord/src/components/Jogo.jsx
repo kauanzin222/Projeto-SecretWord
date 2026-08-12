@@ -8,6 +8,7 @@ const Jogo = ({ palavra, categoria, tentativas, pontuacao, jogarLetra, letrasUsa
     const handleSubmit = (e) => {
         e.preventDefault()
         jogarLetra(letraEscolhida)
+        setLetraEscolhida('')
     }
 
     return (
@@ -20,7 +21,7 @@ const Jogo = ({ palavra, categoria, tentativas, pontuacao, jogarLetra, letrasUsa
             <div className={styles.containerPalavra}>
                 {palavra.split('').map((letra, index) =>
                     <div className={styles.quadPalavra} value={letra} key={index}>
-                        {letrasUsadas.includes(letra) ? letra : ''}
+                        {letrasUsadas.includes(letra.toUpperCase()) ? letra.toUpperCase() : ''}
                     </div>)}
             </div>
 
@@ -33,7 +34,7 @@ const Jogo = ({ palavra, categoria, tentativas, pontuacao, jogarLetra, letrasUsa
                     maxLength={1}
                     value={letraEscolhida}
                     required
-                    onChange={(e) => { setLetraEscolhida(e.target.value) }} />
+                    onChange={(e) => { setLetraEscolhida(e.target.value.toUpperCase()) }} />
 
                 <button type='submit'>JOGAR!</button>
             </form>

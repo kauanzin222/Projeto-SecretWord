@@ -1,0 +1,46 @@
+name: Deploy React to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # Ativa o build sempre que você enviar código para a branch 'main'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configurando o Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Instalando as dependências
+        run: npm ci # Instala as dependências de forma limpa e rápida
+
+      - name: Gerando o Build do React
+        run: npm run build
+
+      # Se você usa VITE, o build vai para a pasta 'dist'
+      # Se você usa Create React App, mude o caminho abaixo de './dist' para './build'
+      - name: Upload dos arquivos compilados
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist 
+
+      - name: Publicando no GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

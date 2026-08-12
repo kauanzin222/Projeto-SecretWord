@@ -39,7 +39,7 @@ const Jogo = ({ palavra, categoria, tentativas, pontuacao, jogarLetra, letrasUsa
                 <button type='submit'>JOGAR!</button>
             </form>
             <p>Letras já utilizada:</p>
-
+            {letrasUsadas.join(', ')}
         </div>
     )
 }

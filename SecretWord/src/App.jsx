@@ -58,11 +58,12 @@ function App() {
 
   // TESTA TENTATIVA DO USUÁRIO
   const jogarLetra = (letra) => {
-    setLetras((letrasUsadas) => {
-      return [...letrasUsadas, letra]
-    })
-    palavra.includes(letra) ? '' : setTentativas((prevTentativas) => { prevTentativas - 1 })
-    console.log(tentativas)
+    if (!letrasUsadas.includes(letra))
+      setLetras((letrasUsadas) => { return [...letrasUsadas, letra] })
+
+    if (!palavra.split('').map(letra => letra.toUpperCase()).includes(letra)
+      && !letrasUsadas.includes(letra))
+      setTentativas(tentativasPrev => tentativasPrev - 1)
   }
 
   return (

@@ -1,0 +1,95 @@
+/* FimDeJogo.module.css */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+
+  background-color: var(--card-bg, #ffffff);
+  border: 3.5px solid var(--border-color, #0f172a);
+  border-radius: 20px;
+  box-shadow: var(--shadow-card, 8px 8px 0px #0f172a);
+
+  padding: 48px 36px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+
+  /* Mesma animação de entrada da Tela Inicial e de Jogo */
+  animation: popFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.title {
+  font-family: var(--font-title);
+  font-size: clamp(2.4rem, 5vw, 3.2rem);
+  text-transform: uppercase;
+  color: var(--text-main, #0f172a);
+  line-height: 1.1;
+  letter-spacing: 1px;
+}
+
+/* Badge amarela idêntica ao indicador de "PONTUAÇÃO: 100" da tela de jogo */
+.pontuacaoBadge {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-main, #0f172a);
+
+  background-color: var(--badge-bg, #fef08a);
+  border: 2.5px solid var(--border-color, #0f172a);
+  border-radius: 10px;
+  padding: 10px 24px;
+  box-shadow: 3px 3px 0px var(--border-color, #0f172a);
+}
+
+.pontuacaoNumero {
+  font-family: var(--font-title);
+  font-size: 1.3rem;
+  color: var(--text-main, #0f172a);
+}
+
+/* Botão roxo/índigo idêntico ao "COMEÇAR JOGO" e "JOGAR!" */
+.btnTentar {
+  font-family: var(--font-title);
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  padding: 16px 36px;
+  margin-top: 8px;
+
+  background-color: var(--accent-btn, #4f46e5);
+  color: var(--text-btn, #ffffff);
+
+  border: 3px solid var(--border-color, #0f172a);
+  border-radius: 14px;
+  box-shadow: var(--shadow-btn, 5px 5px 0px #0f172a);
+
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.2s ease;
+}
+
+.btnTentar:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-btn-hover, 7px 7px 0px #0f172a);
+  background-color: var(--accent-btn-hover, #4338ca);
+}
+
+.btnTentar:active {
+  transform: translate(3px, 3px);
+  box-shadow: var(--shadow-btn-active, 2px 2px 0px #0f172a);
+}
+
+/* Animação de entrada unificada */
+@keyframes popFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

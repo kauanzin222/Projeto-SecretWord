@@ -1,15 +1,16 @@
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
 
-// components
+// COMPONENTS
 import TelaInicial from './components/TelaInicial'
 import Jogo from './components/Jogo'
 
-// data
+// DATA
 import { listaPalavras } from './data/palavras'
+import FimDeJogo from './components/FimDeJogo'
 
 const estagio = [
   { id: 1, nome: 'inicio' },
@@ -17,14 +18,21 @@ const estagio = [
   { id: 3, nome: 'fim' }
 ]
 
+const qntdTentativas = 3
+
 function App() {
-  // states
+  // STATES
   const [estagioJogo, setEstagioJogo] = useState(estagio[0].nome)
+
   const [palavrasJogo] = useState(listaPalavras)
   const [palavra, setPalavra] = useState('')
   const [categoria, setCategoria] = useState('')
-  const [letrasUsadas, setLetras] = useState([])
-  const [tentativas, setTentativas] = useState(0)
+  const [letras, setLetras] = useState([])
+
+  const [letrasChute, setLetrasChute] = useState([])
+  const [letrasErradas, setLetrasErradas] = useState([])
+
+  const [tentativas, setTentativas] = useState(qntdTentativas)
   const [pontuacao, setPontuacao] = useState(0)
 
   const teste = () => {
@@ -33,44 +41,78 @@ function App() {
   }
 
   // ESTÁGIOS DO JOGO
-  const iniciarJogo = () => {
+  const limparStatesLetras = () => {
+    setLetrasChute([])
+    setLetrasErradas([])
+  }
+
+  const iniciarJogo = useCallback(() => {
+    limparStatesLetras()
+
     const resultado = sorteiaJogo()
-    setTentativas(3)
     setCategoria(resultado.categoria)
     setPalavra(resultado.palavra)
+    setLetras(resultado.palavra.split('').map((letra) => letra.toUpperCase()))
+    setTentativas(qntdTentativas)
     setEstagioJogo(estagio[1].nome)
-  }
+  }, [palavra, categoria])
+
   const finalizarJogo = () => {
     setEstagioJogo(estagio[2].nome)
   }
 
   // SORTEIOS
-  const sorteiaJogo = () => {
+  const sorteiaJogo = useCallback(() => {
     const categoriaSorteada = sorteiaItem(Object.keys(palavrasJogo))
     return {
       categoria: categoriaSorteada,
       palavra: sorteiaItem(palavrasJogo[categoriaSorteada])
     }
-  }
+  }, [palavrasJogo])
   const sorteiaItem = (itens) => {
     return itens[Math.floor(Math.random() * itens.length)]
   }
 
   // TESTA TENTATIVA DO USUÁRIO
   const jogarLetra = (letra) => {
-    if (!letrasUsadas.includes(letra))
-      setLetras((letrasUsadas) => { return [...letrasUsadas, letra] })
+    // Checa se a letra já foi utilizada
+    if (letrasChute.includes(letra) || letrasErradas.includes(letra)) {
+      return
+    }
 
-    if (!palavra.split('').map(letra => letra.toUpperCase()).includes(letra)
-      && !letrasUsadas.includes(letra))
-      setTentativas(tentativasPrev => tentativasPrev - 1)
-
-    console.log(testaAcertoPalavra())
-    console.log(palavra)
-    console.log(letrasUsadas)
+    // Checa se a letra está correta
+    if (letras.includes(letra)) {
+      setLetrasChute((atualLetrasChute) => [...atualLetrasChute, letra])
+    } else {
+      setLetrasErradas((atualLetrasErradas) => [...atualLetrasErradas, letra])
+      setTentativas((atualTentativas) => atualTentativas - 1)
+    }
   }
-  const testaAcertoPalavra = () => {
-    return palavra.split('').every(letra => letrasUsadas.includes(letra.toUpperCase()))
+
+
+  // Finaliza o jogo ao chegar em 0 tentativas
+  useEffect(() => {
+    if (tentativas <= 0) {
+      limparStatesLetras()
+
+      finalizarJogo()
+    }
+  }, [tentativas])
+
+  // Checa se o usuário acertou todas as letras
+  useEffect(() => {
+    const letrasUnicas = [...new Set(letras)]
+
+    if (estagioJogo === 'jogo' && letrasChute.length === letrasUnicas.length) {
+      setPontuacao((atualPontuacao) => (atualPontuacao + 100))
+      iniciarJogo()
+    }
+  }, [letrasChute, iniciarJogo, letras])
+
+  const tentarNovamente = () => {
+    setTentativas(qntdTentativas)
+    setPontuacao(0)
+    iniciarJogo()
   }
 
   return (
@@ -79,15 +121,16 @@ function App() {
 
       {estagioJogo == 'jogo' &&
         <Jogo
-          palavra={palavra}
+          letras={letras}
           categoria={categoria}
           tentativas={tentativas}
           pontuacao={pontuacao}
           jogarLetra={jogarLetra}
-          letrasUsadas={letrasUsadas}
+          letrasChute={letrasChute}
+          letrasErradas={letrasErradas}
         ></Jogo>}
 
-
+      {estagioJogo == 'fim' && <FimDeJogo tentarNovamente={tentarNovamente} pontuacao={pontuacao}></FimDeJogo>}
     </>
   )
 }

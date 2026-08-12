@@ -1,9 +1,14 @@
 import React from 'react'
 
-const FimDeJogo = () => {
+const FimDeJogo = ({
+  tentarNovamente,
+  pontuacao
+}) => {
   return (
     <div className='container'>
-        Fim de Jogo
+      <h1>Fim de Jogo!</h1>
+      <p>Sua pontuação final foi: <span>{pontuacao}</span></p>
+      <button onClick={tentarNovamente}>Tentar novamente</button>
     </div>
   )
 }

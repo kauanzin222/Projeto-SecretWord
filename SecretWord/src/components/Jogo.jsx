@@ -1,14 +1,24 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import styles from './Jogo.module.css'
 
-const Jogo = ({ palavra, categoria, tentativas, pontuacao, jogarLetra, letrasUsadas }) => {
+const Jogo = ({
+    letras,
+    categoria,
+    tentativas,
+    pontuacao,
+    jogarLetra,
+    letrasChute,
+    letrasErradas
+}) => {
     const [letraEscolhida, setLetraEscolhida] = useState('')
+    const inputLetra = useRef(null)
 
     const handleSubmit = (e) => {
         e.preventDefault()
         jogarLetra(letraEscolhida)
         setLetraEscolhida('')
+        inputLetra.current.focus()
     }
 
     return (
@@ -19,9 +29,9 @@ const Jogo = ({ palavra, categoria, tentativas, pontuacao, jogarLetra, letrasUsa
             <p>Você ainda tem {tentativas} tentativa(s)</p>
 
             <div className={styles.containerPalavra}>
-                {palavra.split('').map((letra, index) =>
-                    <div className={styles.quadPalavra} value={letra} key={index}>
-                        {letrasUsadas.includes(letra.toUpperCase()) ? letra.toUpperCase() : ''}
+                {letras.map((letra, i) =>
+                    <div className={styles.quadPalavra} value={letra} key={i}>
+                        {letrasChute.includes(letra) ? letra : ''}
                     </div>)}
             </div>
 
@@ -34,12 +44,13 @@ const Jogo = ({ palavra, categoria, tentativas, pontuacao, jogarLetra, letrasUsa
                     maxLength={1}
                     value={letraEscolhida}
                     required
+                    ref={inputLetra}
                     onChange={(e) => { setLetraEscolhida(e.target.value.toUpperCase()) }} />
 
                 <button type='submit'>JOGAR!</button>
             </form>
             <p>Letras já utilizadas:</p>
-            {letrasUsadas.join(', ')}
+            {letrasErradas.join(', ')}
         </div>
     )
 }

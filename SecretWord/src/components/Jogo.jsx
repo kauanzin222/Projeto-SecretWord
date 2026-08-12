@@ -1,7 +1,14 @@
 import React from 'react'
+import { useState } from 'react'
 import styles from './Jogo.module.css'
 
-const Jogo = ({ palavra, categoria, tentativas, pontuacao }) => {
+const Jogo = ({ palavra, categoria, tentativas, pontuacao, jogarLetra, letrasUsadas }) => {
+    const [letraEscolhida, setLetraEscolhida] = useState('')
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        jogarLetra(letraEscolhida)
+    }
 
     return (
         <div className='container'>
@@ -12,12 +19,24 @@ const Jogo = ({ palavra, categoria, tentativas, pontuacao }) => {
 
             <div className={styles.containerPalavra}>
                 {palavra.split('').map((letra, index) =>
-                    <div className={styles.quadPalavra} value={letra} key={index}></div>)}
+                    <div className={styles.quadPalavra} value={letra} key={index}>
+                        {letrasUsadas.includes(letra) ? letra : ''}
+                    </div>)}
             </div>
 
             <p>Tente adivinhar uma letra da palavra:</p>
 
-            <form><input type="text" className={styles.inputLetra} maxLength={1} /> <button>JOGAR!</button></form>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    className={styles.inputLetra}
+                    maxLength={1}
+                    value={letraEscolhida}
+                    required
+                    onChange={(e) => { setLetraEscolhida(e.target.value) }} />
+
+                <button type='submit'>JOGAR!</button>
+            </form>
             <p>Letras já utilizada:</p>
 
         </div>

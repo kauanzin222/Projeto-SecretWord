@@ -56,7 +56,14 @@ function App() {
     return itens[Math.floor(Math.random() * itens.length)]
   }
 
-  //  
+  // TESTA TENTATIVA DO USUÁRIO
+  const jogarLetra = (e, letra) => {
+    setLetras((letrasUsadas) => {
+      return [...letrasUsadas, letra]
+    })
+
+    palavra.includes(letra) ? '' : setTentativas((prevTentativas) => {prevTentativas - 1})
+  }
 
   return (
     <>
@@ -68,6 +75,8 @@ function App() {
           categoria={categoria}
           tentativas={tentativas}
           pontuacao={pontuacao}
+          jogarLetra={jogarLetra}
+          letrasUsadas={letrasUsadas}
         ></Jogo>}
     </>
   )

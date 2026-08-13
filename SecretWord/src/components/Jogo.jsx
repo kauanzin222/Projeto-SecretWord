@@ -21,6 +21,10 @@ const Jogo = ({
         inputLetra.current.focus()
     }
 
+    const handleOnChange = (e) => {
+        setLetraEscolhida(e.target.value.toUpperCase().slice(0, 1))
+    }
+
     return (
         <div className={styles.container}>
             <div className={styles.pontuacaoBadge}>
@@ -49,7 +53,7 @@ const Jogo = ({
                     value={letraEscolhida}
                     required
                     ref={inputLetra}
-                    onChange={(e) => { setLetraEscolhida(e.target.value.toUpperCase()) }} />
+                    onChange={handleOnChange} />
 
                 <button type='submit' className={styles.btnJogar}>JOGAR!</button>
             </form>

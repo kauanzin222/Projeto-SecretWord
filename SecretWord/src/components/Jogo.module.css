@@ -176,3 +176,35 @@
   /* Vermelho para destaque das erradas */
   letter-spacing: 2px;
 }
+
+/* Mobile */
+@media (max-width: 480px) {
+  .container {
+    padding: 24px 16px;
+    gap: 14px;
+    box-shadow: 6px 6px 0px var(--border-color, #0f172a);
+  }
+
+  .pontuacaoBadge {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+
+  .formContainer {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .inputLetra {
+    width: 52px;
+    height: 52px;
+    font-size: 1.5rem;
+  }
+
+  .btnJogar {
+    flex: 1; /* Expande o botão para preencher o resto da linha */
+    height: 52px;
+    padding: 0 16px;
+    font-size: 1rem;
+  }
+}

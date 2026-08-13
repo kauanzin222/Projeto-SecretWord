@@ -50,3 +50,10 @@ body {
   align-items: center;
   padding: 20px;
 }
+
+/* Mobile */
+@media (max-width: 480px) {
+  #root {
+    padding: 12px;
+  }
+}

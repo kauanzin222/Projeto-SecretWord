@@ -137,7 +137,8 @@ function App() {
       {estagioJogo == 'fim' &&
         <FimDeJogo
           tentarNovamente={tentarNovamente}
-          pontuacao={pontuacao}>
+          pontuacao={pontuacao}
+          palavra={palavra}>
         </FimDeJogo>}
     </>
   )

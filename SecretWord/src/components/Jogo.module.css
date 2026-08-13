@@ -55,33 +55,48 @@
   color: #475569;
 }
 
-/* Container flexível para as cartas da palavra */
 .containerPalavra {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  /* Força todas as letras a ficarem na mesma linha */
   justify-content: center;
-  gap: 12px;
+  align-items: center;
+
+  width: 100%;
+  max-width: 100%;
+
+  /* Espaçamento fluido: encolhe até 4px em palavras grandes */
+  gap: clamp(4px, 1.5vw, 12px);
+
   margin: 16px 0;
-  padding: 8px;
+  padding: 8px 0;
 }
 
-/* Cada letra individual estilizada como uma peça de tabuleiro */
 .quadPalavra {
-  width: 60px;
-  height: 60px;
-  
+  /* Largura fluida: encolhe até 28px se houver muitas letras */
+  width: clamp(28px, 6.5vw, 60px);
+
+  /* Mantém a proporção quadrada perfeita independente do tamanho */
+  aspect-ratio: 1;
+
+  /* Permite o encolhimento dinâmico sem quebrar o layout */
+  flex-shrink: 1;
+
   background-color: #ffffff;
-  border: 3.5px solid var(--border-color);
-  border-radius: 12px;
-  box-shadow: 4px 4px 0px var(--border-color);
+  border: 3.5px solid var(--border-color, #0f172a);
+  border-radius: 10px;
+  box-shadow: 3px 3px 0px var(--border-color, #0f172a);
 
   display: flex;
   align-items: center;
   justify-content: center;
 
   font-family: var(--font-title);
-  font-size: 2rem;
-  color: var(--text-main);
+
+  /* O tamanho da letra encolhe junto com a caixa */
+  font-size: clamp(1rem, 3.5vw, 2rem);
+
+  color: var(--text-main, #0f172a);
   text-transform: uppercase;
 }
 
@@ -157,6 +172,7 @@
 
 .letrasUsadas {
   font-family: var(--font-title);
-  color: #ef4444; /* Vermelho para destaque das erradas */
+  color: #ef4444;
+  /* Vermelho para destaque das erradas */
   letter-spacing: 2px;
 }
